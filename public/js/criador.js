@@ -67,6 +67,12 @@ function AdicionarPergunta() {
   console.log("Criado:", criado);
 }
 
+function AdicionarPreview(event) {
+
+  let imagem = URL.createObjectURL(event.target.files[0])
+  
+
+}
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -89,6 +95,7 @@ form.addEventListener("submit", function (e) {
     let p = {
       pergunta:"",
       tipo:select.value,
+      imagem:"",
       opcoes:[]
     }
 
@@ -115,10 +122,14 @@ console.log(perguntasData)
 socket.emit("salvar-quiz",perguntasData)
 });
 
+socket.on("quiz-list", (quizList) => {
+    
+  console.log(quizList)
+  console.log("Sheeeesh quiz listttt")
+})
+
 /*
 POR FAZER:
-
 -Modo verdadeiro/falso
 -Fazer com que texto inserido não seja apagado ao criar novos botões
-
 */
