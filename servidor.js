@@ -15,7 +15,7 @@ const publicPath = (__dirname + "/public");
 const mongoose = require("mongoose");
 const { Console } = require("console");
 
-mongoose.set('strictQuery', false)
+
 
 async function IniciarBD() {
 
@@ -35,6 +35,15 @@ try {
 }
 
 IniciarBD()
+
+const quizSchema = new mongoose.Schema({
+    name:  {type:String, required:true},
+    author: String,
+    perguntas: [{ pergunta: String, tipo: String, opcoes:[String] }],
+  
+  });
+  
+  const Quiz = mongoose.model("Quiz",quizSchema)
 
 server.listen(port, () => {
     console.log(`Servidor iniciado no port: ${port}`);
@@ -61,31 +70,34 @@ app.get("/criar", (req, res) => {
 
 app.get("/criarSala", (req, res) => {
     res.sendFile(__dirname + "/html/criarSala.html");
+
   });
 
-const quizSchema = new mongoose.Schema({
-    name:  {type:String, required:true},
-    author: String,
-    perguntas: [{ pergunta: String, tipo: String, opcoes:[String] }],
-  
+  app.get("/lobby", (req, res) => {
+    res.sendFile(__dirname + "/html/lobby.html");
   });
-  
-  const Quiz = mongoose.model("Quiz",quizSchema)
+
+  app.get("/question", (req, res) => {
+    res.sendFile(__dirname + "/html/question.html");
+  });
+
+  app.get("/leaderboard", (req, res) => {
+    res.sendFile(__dirname + "/html/leaderboard.html");
+  });
 
 io.on("connection",socket => {
 
     console.log("conectado ao socket com sucesso!")
     
     socket.on("salvar-quiz", (quizData) => {
-
+  
         novoQuiz = new Quiz(quizData);
          novoQuiz.save()
-
-       
+        
     })
 
-    const quizzes = Quiz.find({})
-    console.log(quizzes)
-    socket.emit("quiz-list",quizzes)
-})
+    const find = Quiz.find( (err,data) => {
+        io.emit("quiz-list",data)
+     })
 
+})
