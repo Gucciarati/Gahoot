@@ -17,13 +17,12 @@
     <title>Gahoot!</title>
 </head>
 
-<body>
-
+<body class="background">
     <template id="player-options">
-        <div class="row h-100" >
+        <div class="row h-100">
             <div class="col-6 d-grid gap-2">
-                <button class="btn btn-primary"  id="a1"  onclick="OnAnswer(1)" type="button"></button>
-                <button class="btn btn-warning" id="a3"  onclick="OnAnswer(3)" type="button"></button>
+                <button class="btn btn-primary" id="a1" onclick="OnAnswer(1)" type="button"></button>
+                <button class="btn btn-warning" id="a3" onclick="OnAnswer(3)" type="button"></button>
             </div>
 
             <div class="col-6 d-grid gap-2">
@@ -31,50 +30,165 @@
                 <button class="btn btn-success" id="a4" onclick="OnAnswer(4)" type="button"></button>
             </div>
         </div>
-
     </template>
 
     <template id="answer-feedback">
-        <div class="row h-25 position-absolute top-50 start-50 translate-middle ">
-            <div class="card-body ">
+        <div class="row h-25 position-absolute top-50 start-50 translate-middle">
+            <div class="card-body">
                 <h5 class="card-title text-light">Acertaste!</h5>
-
-
             </div>
 
             <div class="card card-footer h-25 text-light">
-                <p class="card-text ">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
+                <p class="card-text">
+                    Some quick example text to build on the card title and make up the
+                    bulk of the card's content.
+                </p>
             </div>
-
         </div>
     </template>
 
-    <nav class="navbar bg-dark bg-gradient">
-        <form class="container-fluid justify-content-start">
-            <button class="btn btn-primary me-2" type="button">Criar Jogo</button>
-            <button class="btn btn-sm btn-outline-secondary" type="button">
-                Criar sala
-            </button>
-        </form>
-    </nav>
+    <div class="page" id="options">
+        <nav class="navbar bg-light">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1 fs-2 fw-bold">Gahoot!</span>
+                <form class="d-flex just" role="search">
+                    <h5 class="text-dark">Escolha uma das opções</h5>
+                </form>
+            </div>
+        </nav>
 
-    <div class="text-center background">
-        <div class="cube"></div>
-        <div class="cube"></div>
-        <div class="cube"></div>
-        <div class="cube"></div>
-        <div class="cube"></div>
+        <div class="text-center background">
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
 
+            <div class="container align-items-middle h-100 w-100 align-middle" id="mainContainer" style="padding-top:5%">
+                <div class="row h-75">
+                    <div class="col-6 d-grid gap-2">
+                        <button class="btn btn-primary" id="a1" onclick="OnAnswer(1)" type="button"></button>
+                        <button class="btn btn-warning" id="a3" onclick="OnAnswer(3)" type="button"></button>
+                    </div>
+        
+                    <div class="col-6 d-grid gap-2">
+                        <button class="btn btn-danger" id="a2" onclick="OnAnswer(2)" type="button"></button>
+                        <button class="btn btn-success" id="a4" onclick="OnAnswer(4)" type="button"></button>
+                    </div>
+                </div>
+            </div>
 
-        <div class="container align-items-middle h-100 w-100  align-middle" id="mainContainer">
-
-           
         </div>
 
-        <script src="/socket.io/socket.io.js"></script>
-        <script src="js/quizPlayer.js"></script>
-      
+    </div>
+
+    <div class="page" id="answer-feedback">
+        <nav class="navbar bg-light">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1 fs-2 fw-bold">Gahoot!</span>
+                <form class="d-flex just" role="search">
+                 
+                </form>
+            </div>
+        </nav>
+
+        <div class="text-center background">
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+
+            <div class="container align-items-middle h-100 w-50 align-middle" id="mainContainer" style="padding-top:5%">
+                <div class="text-center color-background text-light justify-content-center">
+        
+                    <div class="card-body" style="margin-top: 25%; padding: 3%;">
+                      <h4 class="card-title fw-bold" id="answer-feedback-title">Acertaste!</h4>
+                      
+                      <img class="" src="/media/imagens/cancel.png" alt="" id="answer-feedback-img" style="max-height: 20%; max-width: 20%;">
+                    </div>
+                    <div class="bg-dark w-100  ">
+                        <p class="card-text" id="answer-feedback-smallText">+400 Pts.</p>
+                    </div>
+                    <div class=" w-100  " style="padding: 3%;">
+                        <p class="card-text fw-italic" id="answer-feedback-extraInfo">Tás em 7º lugar, atrás de João</p>
+                    </div>
+                  </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="page" id="waiting-result">
+        <nav class="navbar bg-light">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1 fs-2 fw-bold">Gahoot!</span>
+                <form class="d-flex just" role="search">
+                 
+                </form>
+            </div>
+        </nav>
+
+        <div class="text-center background">
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+
+            <div class="container align-items-middle h-100 w-50 align-middle" id="mainContainer" style="padding-top:5%">
+                <div class="text-center color-background text-light justify-content-center">
+        
+                    <div class="card-body" style="margin-top: 25%;">
+                      <h4 class="card-title fw-italic" style="padding: 3%;">Aguardando resultado...</h4>
+                      
+                      <div class="spinner-grow text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-secondary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-success" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-danger" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-warning" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-info" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-light" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-dark" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                    </div>
+                    <div class="w-100  ">
+                        <p class="card-text text-muted">Será que acertaste?👀</p>
+                    </div>
+                  </div>
+            </div>
+
+        </div>
+
+    </div>
+    <footer class="navbar sticky-bottom bg-light">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1 fs-2 fw-bold text-primary" id="nicknameText">João</span>
+            <form class="d-flex bg-dark" role="search">
+                <h5 class="text-light " id="pointsText" >807</h5>
+            </form>
+        </div>
+    </footer>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/quizPlayer.js"></script> 
 </body>
 
 </html>

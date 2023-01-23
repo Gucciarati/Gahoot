@@ -60,6 +60,7 @@ function AdicionarPergunta() {
     console.log(a.id);
     a = document.getElementById("main").appendChild(a);
     let newDiv = main.children[main.children.length - 1]
+    newDiv.querySelector("select").addEventListener("change", () => ToggleMode(newDiv));
     newDiv.id = i;
     AtualizarNomes(newDiv)
       
@@ -96,12 +97,13 @@ form.addEventListener("submit", function (e) {
       pergunta:"",
       tipo:select.value,
       imagem:"",
-      opcoes:[]
+      opcoes:[],
+      correta:""
     }
 
     inputs.forEach((child,i) => {
       if (child.type === "radio" && child.checked ) {
-  
+  console.log(child.id)
         p.correta = child.id
       } else if (child.type ==="text" &&child.classList.contains("pergunta-nome"))    {
       console.log(child.classList.contains("pergunta-nome"))
@@ -127,6 +129,21 @@ socket.on("quiz-list", (quizList) => {
   console.log(quizList)
   console.log("Sheeeesh quiz listttt")
 })
+
+function ToggleMode(containerDiv) {
+
+  if (containerDiv.querySelector("lowerRow")) {
+
+    containerDiv.querySelector(".lowerOptions").remove()
+
+  } else {
+    
+    let k = document.importNode(document.getElementById("lowerOptionsTemplate").content,true)
+    containerDiv.appendChild(k)
+
+  }
+
+}
 
 /*
 POR FAZER:

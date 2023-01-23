@@ -19,7 +19,7 @@ let timer
 function HostQuiz() {
 
   render("lobby")
-  
+
     let hostID = localStorage.getItem("hostId");
   if (hostID) {
 
@@ -40,25 +40,28 @@ function StartQuiz() {
 
 }
 
-function updateTimer(){
+function updateTimer(game){
   let time = 20;
+  document.getElementById('timer').textContent = " " + time
+
   timer = setInterval(function(){
       time -= 1;
       document.getElementById('timer').textContent = " " + time
 
 
       if(time <= 0 && skipped === false){
-         StartQuestion("TimeUp")
+
+        setTimeout(() => StartQuestion("TimeUp"),5000)
+        ShowCorrect(game)
       } else if (skipped) {
 
-        StartQuestion("Skipped")
-
+        setTimeout(() => StartQuestion("Skipped"),5000)
+        ShowCorrect(game)
       }
   }, 1000);
 }
 
 function MakeLeaderboard(game) {
-
 
   render("leaderboard")
 
@@ -78,7 +81,26 @@ function MakeLeaderboard(game) {
       li.querySelectorAll("h1")[0].textContent = player.nickname
       li.querySelectorAll("h1")[1].textContent = player.points
 
-      document.getElementById("leaderboard-ul").appendChild(li)
+      document.getElementById("leaderboard-container").appendChild(li)
+
+      li = document.getElementById("leaderboard-container").querySelectorAll("li")[leaderboardCount-1]
+
+      if (leaderboardCount == 1 ) {
+        
+        li.className = "list-group-item rounded list-group-item-warning "
+
+      } else if (leaderboardCount == 2) {
+        li.className = "list-group-item rounded list-group-item-secondary "
+
+      } else if (leaderboardCount == 3) {
+        li.className = "list-group-item rounded list-group-item-danger"
+
+      } else {
+        li.className = "list-group-item rounded color-background text-light "
+
+      }
+
+     
     
     }
   })
@@ -107,10 +129,11 @@ function render(pageId) {
 
 function StartQuestion(reason) {
   skipped = false
-  if (timer) {clearInterval(timer)}
+  
+  document.querySelectorAll(".optionButton").forEach(button =>{
 
-
-
+      button.disabled = false
+  })
 
   socket.emit("next-question", reason,(game) => {
 
@@ -135,6 +158,26 @@ function StartQuestion(reason) {
 
 function Skip() {
   skipped = true
+}
+
+function ShowCorrect(game) {
+  if (timer) {clearInterval(timer)}
+  let correta = game.quizData.perguntas[game.currentQuestion-1].correta
+
+  document.querySelectorAll(".optionButton").forEach(button =>{
+
+    if (button.id == "q" + correta) {
+
+      button.disabled = false
+
+    } else {
+      button.disabled = true
+    }
+
+  })
+
+  socket.emit("send-player-answer-feedback")
+
 }
 
 socket.on("update-players", (game)=>{

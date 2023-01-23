@@ -46,7 +46,7 @@ IniciarBD()
 const quizSchema = new mongoose.Schema({
     name:  {type:String, required:true},
     author: String,
-    perguntas: [{ pergunta: String, tipo: String, opcoes:[String] }],
+    perguntas: [{ pergunta: String, tipo: String, opcoes:[String],correta:String }],
   
   });
   
@@ -193,16 +193,36 @@ socket.on("next-question", (reason,sendGame) =>{
 
 })
 
+socket.on("send-player-answer-feedback", () =>{
 
-socket.on("player-answer", (answer) =>{
+  let game = games.getGame(socket.id)
+
+  if (game) {
+    io.to(game.pin).emit("player-answer-feedback",game)
+  }
+
+})
+
+socket.on("player-answer", (answerInfo) =>{
 
   let player = games.editPlayer(socket.id,socket.id)
-  console.log(player)
+
   let game = games.getGame(0,player.gamePin)
 
-  player.foundPlayer.answers.push({questionNumber:game.currentQuestion,answer})
+  let constPontos = 500
 
+  let pointsGained = Math.round(constPontos/(answerInfo.answerTime)) 
+  console.log(answerInfo,pointsGained)
+  if (game.quizData.perguntas[game.currentQuestion -1].correta !== String(answerInfo.answer)) {
+      pointsGained = 0
+  }
+
+  player.foundPlayer.answers.push({questionNumber:game.currentQuestion,answerInfo:answerInfo.answer,pointsGained})
+  player.foundPlayer.points += pointsGained
+  
   console.log(game)
+  console.log(player.foundPlayer.nickname + " Just answered with option " + answerInfo.answer + " while the correct option was " + game.quizData.perguntas[game.currentQuestion -1].correta )
+  console.log(game.quizData.perguntas[game.currentQuestion -1].correta !== String(answerInfo.answer))
 
 })
 

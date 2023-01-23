@@ -160,62 +160,43 @@
 
 <div class="page h-100 w-100" id="question">
 
-    <nav class="navbar bg-dark justify-content-center " >
-        <!-- <form class="container-fluid justify-content-start">
-        <button class="btn btn-primary me-2" type="button">Criar Jogo</button>
-        <button class="btn btn-sm btn-outline-secondary" type="button">Criar sala</button>
-    </form> -->
-
-        <div class="row w-75 align-items-center">
-            <div class="col-2 align-text-center">
-                <div class=" rounded-circle text-bg-primary w-25 h-25" id="timer">50</div>
-            </div>
-            <div class="col-8">
-                <div class="card h-100 text-bg-secondary">
-                    <div class="card-body text-bg-dark  border rounded">
-
-                        <h3 id="questionText">Partilha o codigo com os teus amigos</h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-2">
+        <nav class="navbar bg-dark">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1 fs-2 fw-bold text-light" id="timer">50</span>
+                <form class="d-flex text-bg-dark">
+                    <h3 id="questionText">Partilha o codigo com os teus amigos</h3>
+                </form>
                 <button class="btn btn-primary" type="button" onclick="Skip()"  >Skip</button>
             </div>
-
-        </div>
+        </nav>
+        
   
-    </nav>
+ 
 
-    <div class="container h-100  questionsTemplate" >
+    <div class="container h-100  questionsTemplate align-middle" style="padding: 3%;" >
 
         <div class="row">
-            <div class="col-2">
+            <div class="col-4">
 
             </div>
-            <div class="col-8 align-items-center">
-                <div class=" h-100 progressbars justify-content-center" background-color: rgba(255,0,0,0.1);">
-                    <div class="h-25 d-inline-block" style="width: 120px; background-color: rgba(0,0,255,.1)">Height 25%</div>
-                    <div class="h-50 d-inline-block" style="width: 120px; background-color: rgba(0,0,255,.1)">Height 50%</div>
-                    <div class="h-75 d-inline-block" style="width: 120px; background-color: rgba(0,0,255,.1)">Height 75%</div>
-                    <div class="h-100 d-inline-block" style="width: 120px; background-color: rgba(0,0,255,.1)">Height 100%</div>
-                    <div class="h-auto d-inline-block" style="width: 120px; background-color: rgba(0,0,255,.1)">Height auto</div>
-                  </div>
+            <div class="col-4">
+                <img src="media/imagens/dark-bg-img.jpg" class=" img-thumbnail rounded" alt="..." style="max-height: 10 0%;" >
+                  
             </div>
             <div class="col-2">
 
             </div>
         </div>
 
-        <div class="row h-50" style="margin-top: 10%;">
+        <div class="row h-50" style="padding-top: 10%;">
             <div class="col-6 d-grid gap-2">
-                <button class="btn btn-primary" id="q1" type="button">Button</button>
-                <button class="btn btn-warning" id ="q3" type="button">Button</button>
+                <button class="btn optionButton btn-primary" id="q1" type="button" >Button</button>
+                <button class="btn optionButton btn-warning " id ="q3" type="button" >Button</button>
             </div>
 
             <div class="col-6 d-grid gap-2">
-                <button class="btn btn-danger" id="q2" type="button">Button</button>
-                <button class="btn btn-success" id="q4" type="button">Button</button>
+                <button class="btn optionButton btn-danger " id="q2" type="button" >Button</button>
+                <button class="btn optionButton btn-success " id="q4" type="button" >Button</button>
             </div>
         </div>
 
@@ -232,66 +213,11 @@
         </div>
     </nav>
     
-    <div class="container h-100">
+    <div class="container h-100" style="margin-top: 5%;">
 
-        <ul class="list-group list-group-flush" >
+        <ul class="list-group list-group-flush" id="leaderboard-container">
            
-            <li class="list-group-item rounded " >
-                <div class="row h-100 text-start ">
-    
-                    <div class="col-10"><h1>João</h1></div>
-                    <div class="col-2"><h1>816</h1></div>
-                    
-                </div>
-            </li>
-            <li class="list-group-item color-background" >
-                <div class="row h-100 text-start ">
-    
-                    <div class="col-10"><h1>João</h1></div>
-                    <div class="col-2"><h1>816</h1></div>
-                    
-                </div>
-            </li>
-            <li class="list-group-item color-background" >
-                <div class="row h-100 text-start ">
-    
-                    <div class="col-10"><h1>João</h1></div>
-                    <div class="col-2"><h1>816</h1></div>
-                    
-                </div>
-            </li>
-            <li class="list-group-item color-background" >
-                <div class="row h-100 text-start ">
-    
-                    <div class="col-10"><h1>João</h1></div>
-                    <div class="col-2"><h1>816</h1></div>
-                    
-                </div>
-            </li>
-            <li class="list-group-item color-background" >
-                <div class="row h-100 text-start ">
-    
-                    <div class="col-10"><h1>João</h1></div>
-                    <div class="col-2"><h1>816</h1></div>
-                    
-                </div>
-            </li>
-            <li class="list-group-item color-background" >
-                <div class="row h-100 text-start ">
-    
-                    <div class="col-10"><h1>João</h1></div>
-                    <div class="col-2"><h1>816</h1></div>
-                    
-                </div>
-            </li>
-            <li class="list-group-item color-background" >
-                <div class="row h-100 text-start ">
-    
-                    <div class="col-10"><h1>João</h1></div>
-                    <div class="col-2"><h1>816</h1></div>
-                    
-                </div>
-            </li>
+          
            
           </ul>
     </div>
@@ -304,7 +230,7 @@
 </div>
 
         <script src="/socket.io/socket.io.js"></script>
-      
+       <script src="js/quizManager.js"></script> 
 </body>
 
 </html>
