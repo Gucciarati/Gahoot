@@ -1,0 +1,54 @@
+h1 {
+    text-align: center;
+}
+
+body {
+    background-color: #363636;
+    text-align: center;
+}
+
+button {
+    display: block;
+ 
+}
+
+
+
+.q{
+    background-color: crimson;
+    margin: 1%;
+ 
+    padding: 5% 24%;
+}
+
+.entrar{
+    margin-top: 1%;
+
+}
+
+
+.titulo {
+    margin-top: 2%;
+    color: white;
+}
+
+#conteudo-principal {
+    position: relative;
+    top: 300px;
+}
+
+.hideable{
+    visibility: hidden;
+}
+
+#anel{
+    height: auto;
+    width: 10%;
+    animation: carregamento 1s linear infinite ;
+}
+
+@keyframes carregamento {
+    20% {transform: rotate(0deg);}
+    50%{transform: rotate(180deg);}
+    100%{transform: rotate(360deg);} 
+}
