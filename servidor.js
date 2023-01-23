@@ -56,7 +56,7 @@ const quizSchema = new mongoose.Schema({
 if (port == null || port == "") {
   port = 3000;
 }
-app.listen(port);
+
 
 server.listen(port, () => {
     console.log(`Servidor iniciado no port: ${port}`);
