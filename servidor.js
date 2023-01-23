@@ -5,7 +5,7 @@ const app = express();
 const server = require('http').createServer(app);
 const {Server}= require('socket.io');
 const io = new Server(server)
-const port = process.env.PORT || 3000;
+
 
 
 const path = require("path");
@@ -51,6 +51,12 @@ const quizSchema = new mongoose.Schema({
   });
   
   const Quiz = mongoose.model("Quiz",quizSchema)
+
+  let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+app.listen(port);
 
 server.listen(port, () => {
     console.log(`Servidor iniciado no port: ${port}`);
