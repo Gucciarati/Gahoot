@@ -47,8 +47,8 @@
     </template>
 
     <template id="playerButtonTemplate">
-        <div class="playerCard h-100 card text-bg-dark opacity-5 col-lg-2 col-sm-6 col-md-4 rounded-3">
-            <h1 style="margin-top: 15%;">Gucci</h1>
+        <div class="playerCard h-100 card text-bg-dark text-break opacity-5 col-lg-2 col-sm-6 col-md-4 rounded-3">
+            <h3 style="margin-top: 15%; margin-bottom: 15%;">--------------</h3>
         </div>
     </template>
 
@@ -103,7 +103,7 @@
     </template>
 
     <template id="leaderboard-item">
-        <li class="list-group-item color-background" >
+        <li class="list-group-item color-background" style="margin:0.5%" >
             <div class="row h-100 text-start ">
 
                 <div class="col-10"><h1>João</h1></div>
@@ -135,6 +135,8 @@
                 </div>
             </div>
     
+           
+
             
         </nav>
 
@@ -147,7 +149,9 @@
     
             <div class="container text-center h-50" style="margin-top:5%" id="playerContainerParent">
     
-                <div class="row justify-content h-25 align-middle" id="playerContainer"> </div>
+                <div class="row justify-content h-25 align-middle" id="playerContainer"> 
+                   
+                </div>
     
             </div>
     
@@ -157,8 +161,7 @@
  </div>
 
 
-
-<div class="page h-100 w-100" id="question">
+<div class="page h-100 w-100" id="question-1">
 
         <nav class="navbar bg-dark">
             <div class="container-fluid">
@@ -180,7 +183,7 @@
 
             </div>
             <div class="col-4">
-                <img src="media/imagens/dark-bg-img.jpg" class=" img-thumbnail rounded" alt="..." style="max-height: 10 0%;" >
+                <img src="media/imagens/dark-bg-img.jpg" class=" img-thumbnail rounded" id="question-image" alt="..." style="max-height: 10 0%;" >
                   
             </div>
             <div class="col-2">
@@ -201,6 +204,51 @@
         </div>
 
     </div>
+
+
+</div>
+
+<div class="page h-100 w-100" id="question-2">
+
+    <nav class="navbar bg-dark">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1 fs-2 fw-bold text-light" id="timer">50</span>
+            <form class="d-flex text-bg-dark">
+                <h3 id="questionText">Partilha o codigo com os teus amigos</h3>
+            </form>
+            <button class="btn btn-primary" type="button" onclick="Skip()"  >Skip</button>
+        </div>
+    </nav>
+    
+
+
+
+<div class="container h-100  questionsTemplate align-middle" style="padding: 3%;" >
+
+    <div class="row">
+        <div class="col-4">
+
+        </div>
+        <div class="col-4">
+            <img src="media/imagens/dark-bg-img.jpg" class=" img-thumbnail rounded" id="question-image" alt="..." style="max-height: 10 0%;" >
+              
+        </div>
+        <div class="col-2">
+
+        </div>
+    </div>
+
+    <div class="row h-50" style="padding-top: 10%;">
+        <div class="col-6 d-grid gap-2">
+            <button class="btn optionButton btn-primary" id="q1" type="button" >Button</button>
+        </div>
+
+        <div class="col-6 d-grid gap-2">
+            <button class="btn optionButton btn-danger " id="q2" type="button" >Button</button>
+        </div>
+    </div>
+
+</div>
 
 
 </div>
@@ -230,7 +278,7 @@
 </div>
 
         <script src="/socket.io/socket.io.js"></script>
-       <script src="js/quizManager.js"></script> 
+        <script src="js/quizManager.js"></script> 
 </body>
 
 </html>

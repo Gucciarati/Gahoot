@@ -16,6 +16,7 @@ function JoinRoom() {
 
         if (joined) {
             console.log(socket.id)
+            render("waiting-room")
 
         } else {
             alert("Sala inválida, por favor volte à pagina principal");
@@ -25,6 +26,8 @@ function JoinRoom() {
     }
 
 }
+
+let blacklist = ["Hugh Jass,Mike Hawk ,Ben Dover, Peter File ,Chris Peacock ,Heywood Jablowme, Wilma Diqfit ,Nick Gah ,Dixie Normous, Barry McKockiner,Duncan McOkiner,Hugh G. Rection, Mike Oxlong ,Phil McCraken,Ifarr Tallnight,Gabe Itch,Moe Lester,Phil Mias,Justin Herass,Todd Lerfondler,Gabe Utsecks,Stan Keepus,Tara Dikoff,Eric Shawn,Alpha Q,Hugh Janus,Mike Rotch Burns,Pat Myaz,Betty Phucker,Knee Grow,Ms. Carriage,Ray Pist,Harry Anoos,Maya Normus Bhut,E. Rec Sean,Dang Lin Wang,Anna Borshin,Hari Balsac,Ped O’Phyl,Wilma Dikfit,School Kahooter,Tera Wrist,York Oxmall"]
 
 
 function OnAnswer(answer){
@@ -72,6 +75,9 @@ socket.on("player-answer-feedback",(game) => {
             })
 
             console.log(answerToCurrent,game,player)
+            
+            document.getElementById("nicknameText").textContent = player.nickname
+            document.getElementById("pointsText").textContent = player.points
 
         if ( answerToCurrent && answerToCurrent.pointsGained > 0 ) {
             document.getElementById("answer-feedback-img").src = "/media/imagens/check.png"
@@ -88,16 +94,16 @@ socket.on("player-answer-feedback",(game) => {
 
         }
 
-            game.members.sort(function(a, b){return a.points - b.points});
-
+           k = game.members.sort(function(a, b){return b.points - a.points});
+console.log(k,game.members)
             let placement = 0
-            game.members.forEach((player) =>{
+            game.members.forEach((member) =>{
           
                 placement+=1
           
-                if (player.nickname == player.nickname && placement > 2) {
+                if (player.playerId == member.playerId && placement >= 2) {
                   
-                    document.getElementById("answer-feedback-extraInfo").textContent = " Tás em " +placement+ " lugar, atrás de " + game.members[placement - 2].nickname 
+                    document.getElementById("answer-feedback-extraInfo").textContent = " Tás em " +placement+ "º lugar, atrás de " + game.members[placement - 2].nickname 
                     
 
                 } else {
@@ -116,7 +122,9 @@ socket.on("next-question-player", (game)=>{
 
 console.log("recieved")
 
-    render("options")
+    let questionPage = "options-" + game.quizData.perguntas[game.currentQuestion - 1].tipo;
+      render(questionPage);
+
     canAnswer = true
     answerTimeStart = new Date();
 

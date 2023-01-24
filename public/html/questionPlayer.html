@@ -47,7 +47,7 @@
         </div>
     </template>
 
-    <div class="page" id="options">
+    <div class="page" id="options-1">
         <nav class="navbar bg-light">
             <div class="container-fluid">
                 <span class="navbar-brand mb-0 h1 fs-2 fw-bold">Gahoot!</span>
@@ -74,6 +74,39 @@
                     <div class="col-6 d-grid gap-2">
                         <button class="btn btn-danger" id="a2" onclick="OnAnswer(2)" type="button"></button>
                         <button class="btn btn-success" id="a4" onclick="OnAnswer(4)" type="button"></button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="page" id="options-2">
+        <nav class="navbar bg-light">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1 fs-2 fw-bold">Gahoot!</span>
+                <form class="d-flex just" role="search">
+                    <h5 class="text-dark">Escolha uma das opções</h5>
+                </form>
+            </div>
+        </nav>
+
+        <div class="text-center background">
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+
+            <div class="container align-items-middle h-100 w-100 align-middle" id="mainContainer" style="padding-top:5%">
+                <div class="row h-75">
+                    <div class="col-6 d-grid gap-2">
+                        <button class="btn btn-primary" id="a1" onclick="OnAnswer(1)" type="button"></button>
+                    </div>
+        
+                    <div class="col-6 d-grid gap-2">
+                        <button class="btn btn-danger" id="a2" onclick="OnAnswer(2)" type="button"></button>
                     </div>
                 </div>
             </div>
@@ -178,11 +211,51 @@
         </div>
 
     </div>
+
+    <div class="page" id="waiting-room">
+        <nav class="navbar bg-light">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1 fs-2 fw-bold">Gahoot!</span>
+                <form class="d-flex just" role="search">
+                 
+                </form>
+            </div>
+        </nav>
+
+        <div class="text-center background">
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+
+            <div class="container align-items-middle h-100 w-50 align-middle" id="mainContainer" style="padding-top:5%">
+                <div class="text-center color-background text-light justify-content-center">
+        
+                    <div class="card-body" style="margin-top: 25%;">
+
+                        <div class="spinner-grow text-success" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                          </div>
+                    
+                      <h4 class="card-title fw-italic" style="padding: 3%;">Sala encontrada!</h4>
+
+                    <div class="w-100  ">
+                        <p class="card-text text-muted">À espera que o host inicie o jogo...</p>
+                    </div>
+                  </div>
+            </div>
+
+        </div>
+
+    </div>
+    </div>
+
     <footer class="navbar sticky-bottom bg-light">
         <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1 fs-2 fw-bold text-primary" id="nicknameText">João</span>
+            <span class="navbar-brand mb-0 h1 fs-2 fw-bold text-primary" id="nicknameText"></span>
             <form class="d-flex bg-dark" role="search">
-                <h5 class="text-light " id="pointsText" >807</h5>
+                <h5 class="text-light " id="pointsText" >0</h5>
             </form>
         </div>
     </footer>

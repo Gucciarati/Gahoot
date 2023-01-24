@@ -20,7 +20,7 @@
 
 <body>
  
-    <div class="navbar ">
+    <div class="navbar " id="media">
         <form class="container-fluid justify-content-start">
             <a href="criar" class="btn btn-primary">Criar Quiz</a>
             <a href="criarSala" class="btn btn-sm btn-outline-secondary" >Criar sala</a>
@@ -28,7 +28,7 @@
     </div>
 
     <div class="background">
-        <audio controls>
+        <audio  id="bg-music" autoplay>
             <source src="/media/audio/Magenta.mp3" type="audio/wav" />
         </audio>
           
@@ -38,12 +38,12 @@
         <div class="cube"></div>
         <div class="cube"></div>
 
-        <div class="row justify-content-center align-items-center" style="margin-top:20%;">
+        <div class=" row justify-content-center align-items-center" style="margin-top:20%;">
 
-            <div class=" col-4">
+            <div class="container w-50 h-50">
 
                 <h1 class="titulo">Gahoot!</h1>
-
+            <div class="">
                 <div class="card text-bg-dark">
                     <div class="card-body">
                         <form action="" id="joinRoomForm">
@@ -58,28 +58,9 @@
                     </div>
                     </form>
                 </div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                    Launch static backdrop modal
-                  </button>
-                  
-                  <!-- Modal -->
-                  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          ...
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Understood</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+            </div>
+               
+            
             </div>
 
         </div>
