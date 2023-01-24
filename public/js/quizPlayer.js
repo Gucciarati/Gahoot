@@ -9,7 +9,7 @@ let answerTimeStart
 function JoinRoom() {
 
     let provisionalId = localStorage.getItem("provisionalId")
-    
+    render("")
     if (provisionalId) {
         console.log(provisionalId)
     socket.emit("join-room", provisionalId, (joined)=> {
@@ -37,11 +37,14 @@ function OnAnswer(answer){
 
         let answerInfo =  {answer,answerTime: ((  new Date() - answerTimeStart)/1000)}
         console.log(answerTimeStart,answerInfo)
-        if (answerInfo.answerTime <= 2) {
+        if (answerInfo.answerTime <= 3) {
 
+            document.getElementById("waiting-extraInfo").textContent = "⚡Daaaaamn, essa resposta foi tão rapida que os nossos computadores quase não a conseguiram processar😩⚡"
 
-        }  else {
-
+        }  else if (answerInfo.answerTime <= 7 ) {
+            document.getElementById("waiting-extraInfo").textContent = "Será que acertaste?👀"
+        } else {
+            document.getElementById("waiting-extraInfo").textContent = "Quase adormeci enquanto esperava por essa resposta?😴"
         }
 
         socket.emit("player-answer",answerInfo)

@@ -14,7 +14,9 @@ let leaderboardItem = document.getElementById("leaderboard-item");
 let leaderboardNav = document.getElementById("leaderboard-nav");
 
 let skipped = false;
-let timer;
+let timer,questionPage;
+
+
 
 function HostQuiz() {
   render("lobby");
@@ -35,11 +37,11 @@ function StartQuiz() {
 
 function updateTimer(game) {
   let time = 20;
-  document.getElementById("timer").textContent = " " + time;
+  document.getElementById(questionPage+"timer").textContent = " " + time;
 
   timer = setInterval(function () {
     time -= 1;
-    document.getElementById("timer").textContent = " " + time;
+    document.getElementById(questionPage+"timer").textContent = " " + time;
 
     if (time <= 0 && skipped === false) {
       setTimeout(() => StartQuestion("TimeUp"), 5000);
@@ -110,8 +112,7 @@ function StartQuestion(reason) {
   socket.emit("next-question", reason, (game) => {
     if (game) {
       console.log(game.currentQuestion);
-      let questionPage =
-        "question-" + game.quizData.perguntas[game.currentQuestion - 1].tipo;
+       questionPage ="question-" + game.quizData.perguntas[game.currentQuestion - 1].tipo;
       render(questionPage);
 
       if (game && game.currentQuestion >= game.quizData.perguntas.length) {
@@ -120,19 +121,17 @@ function StartQuestion(reason) {
 
       updateTimer(game);
 
-      document.getElementById("questionText").textContent =
+      document.getElementById(questionPage+"Text").textContent =
         game.quizData.perguntas[game.currentQuestion - 1].pergunta;
 
-      let m = 3;
-      if (game.quizData.perguntas[game.currentQuestion - 1].pergunta.tipo == "1") {
-        m = 5;
-      }
 
-      for (let i = 1; i < m; i++) {
-        document.getElementById("q" + String(i)).textContent =
-          String(i) +
-          ". " +
-          game.quizData.perguntas[game.currentQuestion - 1].opcoes[i - 1];
+      for (let i = 1; i < 5; i++) {
+
+        if (document.getElementById(questionPage + String(i))) {
+          document.getElementById(questionPage + String(i)).textContent = game.quizData.perguntas[game.currentQuestion - 1].opcoes[i - 1];
+        }
+
+    
       }
     }
   });
@@ -149,7 +148,7 @@ function ShowCorrect(game) {
   let correta = game.quizData.perguntas[game.currentQuestion - 1].correta;
 
   document.querySelectorAll(".optionButton").forEach((button) => {
-    if (button.id == "q" + correta) {
+    if (button.id == questionPage + correta) {
       button.disabled = false;
       button.classList.add("border");
     } else {

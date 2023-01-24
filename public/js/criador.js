@@ -119,6 +119,11 @@ form.addEventListener("submit", function (e) {
       canSave = false
     } else {
       canSave = true
+
+      if(p.tipo == "2") {
+        p.opcoes = ["Verdadeiro", "Falso"]
+      }
+
       perguntasData.perguntas.push(p);
     }
     
