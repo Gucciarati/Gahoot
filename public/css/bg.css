@@ -18,6 +18,11 @@ body {
     padding:0;
     margin:0px;
   }
+
+html{
+  scroll-behavior: smooth;
+}
+
   .cube {
     position: absolute;
     top: 80vh;

@@ -17,17 +17,20 @@ let skipped = false;
 let timer,questionPage;
 
 
-
 function HostQuiz() {
   render("lobby");
 
   let hostID = localStorage.getItem("hostId");
   if (hostID) {
+    localStorage.removeItem("hostId")
+
     console.log();
 
     socket.emit("host-join", hostID, (pin) => {
       document.querySelector(".pinText").innerHTML = pin;
     });
+  } else {
+    alert("Acesso inválido, por favor volte para a página principal")
   }
 }
 

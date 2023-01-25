@@ -1,3 +1,5 @@
+const { isObjectIdOrHexString } = require("mongoose");
+
 class LiveGames {
     constructor () {
         this.games = [];
@@ -46,6 +48,18 @@ class LiveGames {
         })
 
         return {foundPlayer,gamePin}
+    }
+
+    endGame(game) {
+
+        let K = this.getGame(game.hostId)
+
+        if (K) {
+
+             
+
+        }
+
     }
 
 }

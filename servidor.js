@@ -182,12 +182,17 @@ io.on("connection", (socket) => {
 
     if (game.members.length >= 1) {
       game.currentQuestion += 1;
+
+      if (game.currentQuestion >= game.quizData.perguntas.length) {
+        games.removeGame(game.hostId)
+      }
       sendGame(game);
     }
 
    
 
     io.to(game.pin).emit("next-question-player", game);
+    
   });
 
   socket.on("send-player-answer-feedback", () => {

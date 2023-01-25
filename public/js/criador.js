@@ -127,6 +127,12 @@ form.addEventListener("submit", function (e) {
       perguntasData.perguntas.push(p);
     }
     
+    for (let i=0;i < Nperguntas; i++) {
+
+      ApagarPergunta()
+
+    }
+
   });
 
   console.log(perguntasData);

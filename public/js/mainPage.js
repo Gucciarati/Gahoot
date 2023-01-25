@@ -7,13 +7,40 @@ var audio = document.createElement('audio');
 var source = document.createElement('source');
 var media = document.getElementById('media');
 
-let isPlaying = false-
+let isPlaying = false
+
+const animateCSS = (element, animation, prefix = 'animate__') =>
+// We create a Promise and return it
+new Promise((resolve, reject) => {
+  const animationName = `${prefix}${animation}`;
+  const node = document.querySelector(element);
+
+  node.classList.add(`${prefix}animated`, animationName);
+
+  // When the animation ends, we clean the classes and resolve the Promise
+  function handleAnimationEnd(event) {
+    event.stopPropagation();
+    node.classList.remove(`${prefix}animated`, animationName);
+    resolve('Animation ended');
+  }
+
+  node.addEventListener('animationend', handleAnimationEnd, {once: true});
+});
+
+animateCSS('#starterText', 'flipInX').then(()=>{
+    animateCSS('#starterSmallText', 'fadeIn')
+})
 
 window.addEventListener('click', (event) => {
    if (!isPlaying) {
     isPlaying = true
     document.getElementById("bg-music").load()
     document.getElementById("bg-music").play()
+    
+    animateCSS('#starter', 'fadeOutUp').then((message) => {
+        render("main")
+        animateCSS('#main', 'fadeIn')
+      });
    }
   })
 
@@ -45,7 +72,7 @@ let gamePin = document.getElementById("gamePinText")
         if (gamePin.value.length !== 9) {
             alert("O código de sala tem de ser um número de 9 dígitos e sem espaços.");
         } else  {
-            alert("O nome de utilizador tem de ter entre 1-20 letras");
+            alert("O nome de utilizador tem de ter entre 2-20 letras");
         }
 
         console.log("Informação invalida")
@@ -62,3 +89,17 @@ form.addEventListener("submit", function (e) {
   
     JoinRoom()
 })  
+
+function render(pageId) {
+    document.querySelectorAll(".page").forEach((page) => {
+      if (page.id === pageId) {
+        page.style.display = "block";
+      } else {
+        page.style.display = "none";
+      }
+    });
+  }
+
+ 
+
+  render("starter")
