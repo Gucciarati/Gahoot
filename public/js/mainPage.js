@@ -44,6 +44,20 @@ window.addEventListener('click', (event) => {
    }
   })
 
+  window.addEventListener('touchstart', (event) => {
+    if (!isPlaying) {
+     isPlaying = true
+     document.getElementById("bg-music").load()
+     document.getElementById("bg-music").play()
+     
+     animateCSS('#starter', 'fadeOutUp').then((message) => {
+         render("main")
+         animateCSS('#main', 'fadeIn')
+       });
+    }
+   })
+ 
+
 function JoinRoom() {
 
     let username = document.getElementById("nicknameText")
